@@ -3,7 +3,7 @@ import java.sql.Timestamp;
 
 public class TicketService {
     public static void main(String[] args) {
-        Ticket emptyTicket = new Ticket((short) 1);
+        Ticket emptyTicket = new Ticket();
         Ticket limitedTicket = new Ticket((short) 2, "MinskArena", (short) 123,
                 new Timestamp(1733850000000L));
         Ticket fullTicket = new Ticket((short) 3, "DinamoSt", (short) 472,

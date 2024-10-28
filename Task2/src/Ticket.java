@@ -14,9 +14,8 @@ public class Ticket {
     private float maxBackpackWeightKg;
     private BigDecimal price;
 
-    public Ticket(short id) {
-        this.id = id;
-        this.creationTime = new Timestamp(new Date().getTime());
+    public Ticket() {
+        this.creationTime = this.generateCreationTime();
     }
 
     public Ticket(short id, String concertHall, short eventCode, Timestamp time) {
@@ -24,7 +23,7 @@ public class Ticket {
         this.concertHall = concertHall;
         this.eventCode = eventCode;
         this.time = time;
-        this.creationTime = new Timestamp(new Date().getTime());
+        this.creationTime = this.generateCreationTime();
     }
 
     public Ticket(short id, String concertHall, short eventCode, Timestamp time,
@@ -37,71 +36,7 @@ public class Ticket {
         this.stadiumSector = stadiumSector;
         this.maxBackpackWeightKg = maxBackpackWeightKg;
         this.price = price;
-        this.creationTime = new Timestamp(new Date().getTime());
-    }
-
-    public short getId() {
-        return id;
-    }
-
-    public String getConcertHall() {
-        return concertHall;
-    }
-
-    public short getEventCode() {
-        return eventCode;
-    }
-
-    public Timestamp getTime() {
-        return time;
-    }
-
-    public Timestamp getCreationTime() {
-        return creationTime;
-    }
-
-    public boolean isPromo() {
-        return isPromo;
-    }
-
-    public char getStadiumSector() {
-        return stadiumSector;
-    }
-
-    public float getMaxBackpackWeightKg() {
-        return maxBackpackWeightKg;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setId(short id) {
-        this.id = id;
-    }
-
-    public void setConcertHall(String concertHall) {
-        this.concertHall = concertHall;
-    }
-
-    public void setEventCode(short eventCode) {
-        this.eventCode = eventCode;
-    }
-
-    public void setTime(Timestamp time) {
-        this.time = time;
-    }
-
-    public void setPromo(boolean promo) {
-        isPromo = promo;
-    }
-
-    public void setStadiumSector(char stadiumSector) {
-        this.stadiumSector = stadiumSector;
-    }
-
-    public void setMaxBackpackWeightKg(float maxBackpackWeightKg) {
-        this.maxBackpackWeightKg = maxBackpackWeightKg;
+        this.creationTime = this.generateCreationTime();
     }
 
     public void setPrice(BigDecimal price) {
@@ -139,5 +74,9 @@ public class Ticket {
     public int hashCode() {
         return Objects.hash(id, concertHall, eventCode, time,
                 isPromo, stadiumSector, maxBackpackWeightKg);
+    }
+
+    private Timestamp generateCreationTime() {
+        return new Timestamp(new Date().getTime());
     }
 }
