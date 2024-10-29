@@ -7,7 +7,7 @@ public class TicketService {
         Ticket limitedTicket = new Ticket((short) 2, "MinskArena", (short) 123,
                 new Timestamp(1733850000000L));
         Ticket fullTicket = new Ticket((short) 3, "DinamoSt", (short) 472,
-                new Timestamp(1740756600000L), true, 'B',
+                new Timestamp(1740756600000L), true, StadiumSector.B,
                 10F, new BigDecimal(100F));
 
         System.out.println("Empty ticket: " + emptyTicket);

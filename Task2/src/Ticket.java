@@ -10,7 +10,7 @@ public class Ticket {
     private Timestamp time;
     private Timestamp creationTime;
     private boolean isPromo;
-    private char stadiumSector;
+    private StadiumSector stadiumSector;
     private float maxBackpackWeightKg;
     private BigDecimal price;
 
@@ -19,28 +19,31 @@ public class Ticket {
     }
 
     public Ticket(short id, String concertHall, short eventCode, Timestamp time) {
+        this();
         this.id = id;
         this.concertHall = concertHall;
         this.eventCode = eventCode;
         this.time = time;
-        this.creationTime = this.generateCreationTime();
     }
 
     public Ticket(short id, String concertHall, short eventCode, Timestamp time,
-                  boolean isPromo, char stadiumSector, float maxBackpackWeightKg, BigDecimal price) {
-        this.id = id;
-        this.concertHall = concertHall;
-        this.eventCode = eventCode;
-        this.time = time;
+                  boolean isPromo, StadiumSector stadiumSector, float maxBackpackWeightKg, BigDecimal price) {
+        this(id, concertHall, eventCode, time);
         this.isPromo = isPromo;
         this.stadiumSector = stadiumSector;
         this.maxBackpackWeightKg = maxBackpackWeightKg;
         this.price = price;
-        this.creationTime = this.generateCreationTime();
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
+        try {
+            if (price.signum() == -1) {
+                throw new IllegalArgumentException("Price can't be negative");
+            }
+            this.price = price;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
