@@ -18,4 +18,8 @@ public class TicketService {
         limitedTicket.setPrice(new BigDecimal(380.5F));
         System.out.println("Limited ticket: " + limitedTicket);
     }
+    
+    void destroy() {
+    	System.out.println("I am destroy method!");
+    }
 }
