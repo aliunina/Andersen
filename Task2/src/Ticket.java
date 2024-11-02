@@ -48,6 +48,10 @@ public class Ticket extends TicketClass {
 		this.stadiumSector = stadiumSector;
 	}
 
+	public void setTime(Timestamp time) {
+		this.time = time;
+	}
+
 	public void setPrice(BigDecimal price) {
 		try {
 			if (price.signum() == -1) {
