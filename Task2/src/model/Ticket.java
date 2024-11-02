@@ -1,33 +1,41 @@
+package model;
+
+import validation.NullValidator;
+import validation.NullableWarning;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
-public class Ticket {
-	private short id;
+public class Ticket extends TicketClass {
+	@NullableWarning
+	private String id;
 	private String concertHall;
-	private short eventCode;
+	@NullableWarning
+	private String eventCode;
 	private Timestamp time;
 	private Timestamp creationTime;
 	private boolean isPromo;
 	private StadiumSector stadiumSector;
-
 	private float maxBackpackWeightKg;
-	private BigDecimal price;
+	private BigDecimal price = BigDecimal.ZERO;
 
 	public Ticket() {
 		this.creationTime = this.generateCreationTime();
+		NullValidator.checkNulls(this);
 	}
 
-	public Ticket(short id, String concertHall, short eventCode, Timestamp time) {
-		this();
+	public Ticket(String id, String concertHall, String eventCode, Timestamp time) {
 		this.id = id;
 		this.concertHall = concertHall;
 		this.eventCode = eventCode;
 		this.time = time;
+		this.creationTime = this.generateCreationTime();
+		NullValidator.checkNulls(this);
 	}
 
-	public Ticket(short id, String concertHall, short eventCode, Timestamp time, boolean isPromo,
+	public Ticket(String id, String concertHall, String eventCode, Timestamp time, boolean isPromo,
 			StadiumSector stadiumSector, float maxBackpackWeightKg, BigDecimal price) {
 		this(id, concertHall, eventCode, time);
 		this.isPromo = isPromo;
@@ -36,7 +44,7 @@ public class Ticket {
 		this.price = price;
 	}
 
-	public short getId() {
+	public String getId() {
 		return this.id;
 	}
 
@@ -46,6 +54,10 @@ public class Ticket {
 
 	public void setStadiumSector(StadiumSector stadiumSector) {
 		this.stadiumSector = stadiumSector;
+	}
+
+	public void setTime(Timestamp time) {
+		this.time = time;
 	}
 
 	public void setPrice(BigDecimal price) {
@@ -66,7 +78,7 @@ public class Ticket {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Ticket ticket = (Ticket) o;
-		return id == ticket.id && eventCode == ticket.eventCode && isPromo == ticket.isPromo
+		return id.equals(ticket.id) && eventCode.equals(ticket.eventCode) && isPromo == ticket.isPromo
 				&& stadiumSector == ticket.stadiumSector
 				&& Float.compare(ticket.maxBackpackWeightKg, maxBackpackWeightKg) == 0
 				&& concertHall.equals(ticket.concertHall) && time.equals(ticket.time)
@@ -82,10 +94,18 @@ public class Ticket {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, concertHall, eventCode, time, isPromo, stadiumSector, maxBackpackWeightKg);
+		return Objects.hash(id, concertHall, eventCode, time, isPromo, stadiumSector, maxBackpackWeightKg, price);
 	}
 
 	private Timestamp generateCreationTime() {
 		return new Timestamp(new Date().getTime());
+	}
+
+	public void share(String phone) {
+		System.out.printf("Share ticket %s by phone - %s\n", this.id, phone);
+	}
+
+	public void share(String phone, String email) {
+		System.out.printf("Share ticket %s by phone - %s and email - %s\n", this.id, phone, email);
 	}
 }
