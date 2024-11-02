@@ -12,8 +12,8 @@ public class TicketStorage extends TicketClass {
 		return ticket;
 	}
 
-	public Ticket getTicketById(short id) throws InstanceNotFoundException {
-		return tickets.stream().filter(ticket -> ticket.getId() == id).findFirst()
+	public Ticket getTicketById(String id) throws InstanceNotFoundException {
+		return tickets.stream().filter(ticket -> ticket.getId().equals(id)).findFirst()
 				.orElseThrow(() -> new InstanceNotFoundException());
 	}
 

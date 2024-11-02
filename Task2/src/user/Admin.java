@@ -6,9 +6,10 @@ import model.TicketStorage;
 import javax.management.InstanceNotFoundException;
 
 public class Admin implements User{
+
     @Override
     public void printRole() {
-        System.out.println("Your role is Admin");
+        System.out.println("Your role is Admin.");
     }
 
     public void checkTicket(TicketStorage ticketStorage, Ticket ticket) {
