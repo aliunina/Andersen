@@ -92,4 +92,12 @@ public class Ticket extends TicketClass {
 	private Timestamp generateCreationTime() {
 		return new Timestamp(new Date().getTime());
 	}
+
+	public void share(String phone) {
+		System.out.printf("Share ticket %d by phone %s\n", this.id, phone);
+	}
+
+	public void share(String phone, String email) {
+		System.out.printf("Share ticket %d by phone - %s and email - %s\n", this.id, phone, email);
+	}
 }

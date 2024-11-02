@@ -24,5 +24,8 @@ public class TicketService extends TicketClass {
         ticketStorage.addTicket(new Ticket((short) 10, "OperaTh", (short) 473, new Timestamp(1793760000000L)));
 
         ticketStorage.print();
+
+        limitedTicket.share("+375441231234");
+        fullTicket.share("+375255678900", "email@gmail.com");
     }
 }
