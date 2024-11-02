@@ -1,21 +1,35 @@
 import javax.management.InstanceNotFoundException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TicketStorage extends TicketClass {
-	private static ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+	private ArrayList<Ticket> tickets = new ArrayList();
 
-	public static Ticket addTicket(Ticket ticket) {
+	public Ticket addTicket(Ticket ticket) {
 		tickets.add(ticket);
 		return ticket;
 	}
 
-	public static Ticket getTicketById(short id) throws InstanceNotFoundException {
+	public Ticket getTicketById(short id) throws InstanceNotFoundException {
 		return tickets.stream().filter(ticket -> ticket.getId() == id).findFirst()
 				.orElseThrow(() -> new InstanceNotFoundException());
 	}
 
-	public static List<Ticket> getTicketByStadiumSector(StadiumSector stadiumSector) {
+	public List<Ticket> getTicketByStadiumSector(StadiumSector stadiumSector) {
 		return tickets.stream().filter(ticket -> ticket.getStadiumSector() == stadiumSector).toList();
+	}
+
+	public List<Ticket> getAllTickets() {
+		return tickets;
+	}
+
+	@Override
+	public void print() {
+		super.print();
+		System.out.println("Tickets: ");
+		for (Ticket ticket : getAllTickets()) {
+			System.out.println(ticket);
+		}
 	}
 }
