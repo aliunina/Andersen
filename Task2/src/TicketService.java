@@ -30,8 +30,4 @@ public class TicketService {
         TicketStorage.addTicket(new Ticket((short) 9, "MinskArena", (short) 908, new Timestamp(1735590000000L)));
         TicketStorage.addTicket(new Ticket((short) 10, "OperaTh", (short) 473, new Timestamp(1793760000000L)));
     }
-
-    void destroy() {
-        System.out.println("2 DESTROY");
-    }
 }
