@@ -2,7 +2,7 @@ import javax.management.InstanceNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketStorage {
+public class TicketStorage extends TicketClass {
 	private static ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 
 	public static Ticket addTicket(Ticket ticket) {

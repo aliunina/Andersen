@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class TicketService {
+public class TicketService extends TicketClass {
     public static void main(String[] args) {
         Ticket emptyTicket = new Ticket();
         Ticket limitedTicket = new Ticket((short) 1, "MinskArena", (short) 123,

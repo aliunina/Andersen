@@ -3,7 +3,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
-public class Ticket {
+public class Ticket extends TicketClass {
 	private short id;
 	private String concertHall;
 	private short eventCode;
