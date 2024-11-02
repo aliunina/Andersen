@@ -35,6 +35,10 @@ public class Ticket {
         this.price = price;
     }
 
+    public short getId() {
+        return this.id;
+    }
+
     public void setPrice(BigDecimal price) {
         try {
             if (price.signum() == -1) {
