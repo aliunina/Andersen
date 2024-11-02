@@ -15,7 +15,7 @@ public class Ticket extends TicketClass {
 	private StadiumSector stadiumSector;
 
 	private float maxBackpackWeightKg;
-	private BigDecimal price;
+	private BigDecimal price = BigDecimal.ZERO;
 
 	public Ticket() {
 		this.creationTime = this.generateCreationTime();
@@ -88,7 +88,7 @@ public class Ticket extends TicketClass {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, concertHall, eventCode, time, isPromo, stadiumSector, maxBackpackWeightKg);
+		return Objects.hash(id, concertHall, eventCode, time, isPromo, stadiumSector, maxBackpackWeightKg, price);
 	}
 
 	private Timestamp generateCreationTime() {
