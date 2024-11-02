@@ -1,3 +1,6 @@
+import model.*;
+import user.*;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -27,5 +30,14 @@ public class TicketService extends TicketClass {
 
         limitedTicket.share("+375441231234");
         fullTicket.share("+375255678900", "email@gmail.com");
+
+        Client client = new Client();
+        Admin admin = new Admin();
+
+        client.printRole();
+        client.getTicket(limitedTicket);
+
+        admin.printRole();
+        admin.checkTicket(ticketStorage, limitedTicket);
     }
 }

@@ -1,3 +1,5 @@
+package model;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
