@@ -1,5 +1,6 @@
-package model;
+package model.ticket;
 
+import model.Identifier;
 import validation.NullValidator;
 import validation.NullableWarning;
 
@@ -8,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
-public class Ticket extends TicketClass {
+public class Ticket extends Identifier {
 	@NullableWarning
 	private String id;
 	private String concertHall;

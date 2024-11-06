@@ -1,10 +1,13 @@
 import model.*;
-import user.*;
+import model.ticket.StadiumSector;
+import model.ticket.Ticket;
+import model.ticket.TicketStorage;
+import model.user.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class TicketService extends TicketClass {
+public class TicketService extends Identifier {
     public static void main(String[] args) {
         TicketStorage ticketStorage = new TicketStorage();
 

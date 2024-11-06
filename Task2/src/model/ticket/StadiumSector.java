@@ -1,4 +1,4 @@
-package model;
+package model.ticket;
 
 public enum StadiumSector {
     A,

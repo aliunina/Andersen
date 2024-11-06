@@ -1,10 +1,14 @@
-package model;
+package model.ticket;
+
+import model.Identifier;
+import model.ticket.StadiumSector;
+import model.ticket.Ticket;
 
 import javax.management.InstanceNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketStorage extends TicketClass {
+public class TicketStorage extends Identifier {
 	private ArrayList<Ticket> tickets = new ArrayList();
 
 	public Ticket addTicket(Ticket ticket) {

@@ -1,11 +1,12 @@
-package user;
+package model.user;
 
-import model.Ticket;
-import model.TicketStorage;
+import model.Identifier;
+import model.ticket.Ticket;
+import model.ticket.TicketStorage;
 
 import javax.management.InstanceNotFoundException;
 
-public class Admin implements User{
+public class Admin extends Identifier implements Printable {
 
     @Override
     public void printRole() {

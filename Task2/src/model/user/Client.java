@@ -1,10 +1,9 @@
-package user;
+package model.user;
 
-import model.Ticket;
+import model.Identifier;
+import model.ticket.Ticket;
 
-import java.sql.Timestamp;
-
-public class Client implements User {
+public class Client extends Identifier implements Printable {
 
     @Override
     public void printRole() {
