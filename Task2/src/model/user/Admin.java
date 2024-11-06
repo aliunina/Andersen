@@ -2,7 +2,7 @@ package model.user;
 
 import model.Identifier;
 import model.ticket.Ticket;
-import model.ticket.TicketStorage;
+import services.TicketStorage;
 
 import javax.management.InstanceNotFoundException;
 
