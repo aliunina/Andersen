@@ -1,15 +1,19 @@
 import model.*;
+import org.json.JSONArray;
 import services.TicketService;
-
-import java.nio.file.Paths;
 
 public class Main extends Identifier {
     public static void main(String[] args) {
-        try {
-            TicketService ts = new TicketService();
-            ts.readTicketsFromFile("src/resources/tickets.json");
-        } catch (Exception e) {
+        TicketService ts = new TicketService();
+        JSONArray tickets = ts.readTicketsFromFile("src/resources/tickets.json");
+        if (tickets != null) {
+            ts.validateTickets(tickets);
+        }
 
+        System.out.println();
+        JSONArray validTickets = ts.readTicketsFromFile("src/resources/validtickets.json");
+        if (validTickets != null) {
+            ts.validateTickets(validTickets);
         }
     }
 }

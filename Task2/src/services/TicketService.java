@@ -1,39 +1,37 @@
 package services;
 
-import model.ticket.Ticket;
-
 import java.io.BufferedReader;
 
 import org.json.*;
 import validation.BusTicketValidator;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class TicketService {
-    private TicketStorage storage;
-
-    public TicketService() {
-        storage = new TicketStorage();
-    }
-
-    public void readTicketsFromFile (String filePath) throws IOException {
+    public JSONArray readTicketsFromFile (String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             StringBuilder jsonStr = new StringBuilder();
             String curStr;
-            while((curStr = reader.readLine()) != null){
+            while((curStr = reader.readLine()) != null) {
                 jsonStr.append(curStr);
             }
             JSONArray tickets = new JSONArray(jsonStr.toString());
-            BusTicketValidator.validateTickets(tickets);
+            return tickets;
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        } catch (IOException e) {
+            System.out.println("File wouldn't load!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+        return null;
     }
 
-    public void validateTickets (ArrayList<Ticket> tickets) {
-
+    public void validateTickets (JSONArray tickets) {
+        BusTicketValidator validator = new BusTicketValidator();
+        validator.validateTickets(tickets);
     }
 }

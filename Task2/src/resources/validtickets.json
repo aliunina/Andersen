@@ -2,26 +2,26 @@
   {
     "ticketClass": "CLA",
     "ticketType": "DAY",
-    "startDate": "2025-01-01",
-    "price": 0
+    "startDate": "2024-01-01",
+    "price": 20
   },
   {
     "ticketClass": "CLA",
     "ticketType": "DAY",
-    "startDate": "2025-01-01",
-    "price": 11
+    "startDate": "2023-01-20",
+    "price": 10
   },
   {
     "ticketClass": "CLA",
-    "ticketType": "PRIME",
+    "ticketType": "MONTH",
     "startDate": null,
     "price": 1000
   },
   {
     "ticketClass": "STD",
     "ticketType": "DAY",
-    "startDate": "2025-01-01",
-    "price": 0
+    "startDate": "2024-08-01",
+    "price": 20
   },
   {
     "ticketClass": "STD",
@@ -38,7 +38,7 @@
   {
     "ticketClass": "CLA",
     "ticketType": "MONTH",
-    "startDate": "2020-01-01",
+    "startDate": null,
     "price": 100
   },
   {
@@ -48,57 +48,57 @@
     "price": 100
   },
   {
-    "ticketClass": null,
+    "ticketClass": "STD",
     "ticketType": "MONTH",
+    "startDate": null,
+    "price": 100
+  },
+  {
+    "ticketClass": "STD",
+    "ticketType": "YEAR",
     "startDate": "2020-01-01",
     "price": 100
   },
   {
     "ticketClass": "STD",
     "ticketType": "MONTH",
-    "startDate": "2020-01-01",
-    "price": 100
-  },
-  {
-    "ticketClass": "STD",
-    "ticketType": null,
-    "startDate": "2020-01-01",
+    "startDate": null,
     "price": 1000
   },
   {
     "ticketClass": "STD",
     "ticketType": "YEAR",
-    "startDate": "",
+    "startDate": "2022-03-28",
     "price": 100
   },
   {
     "ticketClass": "CLA",
     "ticketType": "MONTH",
-    "startDate": "2020-01-01",
-    "price": 99
+    "startDate": null,
+    "price": 150
   },
   {
     "ticketClass": "STD",
-    "ticketType": "PRIME",
+    "ticketType": "DAY",
     "startDate": "2020-01-01",
-    "price": 0
+    "price": 24
   },
   {
     "ticketClass": "CLA",
     "ticketType": "YEAR",
-    "startDate": null,
+    "startDate": "2019-11-20",
     "price": 100
   },
   {
     "ticketClass": "STD",
     "ticketType": "DAY",
-    "startDate": "2028-01-01",
+    "startDate": "2018-01-01",
     "price": 100
   },
   {
     "ticketClass": "CLA",
     "ticketType": "DAY",
-    "startDate": null,
-    "price": null
+    "startDate": "2024-08-12",
+    "price": 60
   }
 ]
