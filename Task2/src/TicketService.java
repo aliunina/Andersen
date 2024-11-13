@@ -29,15 +29,26 @@ public class TicketService extends Identifier {
         list.add(new Ticket("0010", "OperaTh", "473", new Timestamp(1793760000000L)));
 
         System.out.println(list);
-
+        
         list.delete(5);
         list.delete(2);
-        list.delete(10);
 
         System.out.println(list);
 
         System.out.println(list.getByIndex(2));
-        System.out.println(list.getByIndex(13));
+
+        ///////////// Exceptions check /////////////
+        try {
+            list.delete(10);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Index is out of range while deleting element!");
+        }
+
+        try {
+            System.out.println(list.getByIndex(13));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Index is out of range while getting element by index!");
+        }
 
         TicketHashSet set = new TicketHashSet();
         Ticket t1 = new Ticket("0001", "Bolshoi", "537", new Timestamp(1733550000000L));

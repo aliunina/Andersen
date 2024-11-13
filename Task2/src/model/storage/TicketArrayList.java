@@ -1,6 +1,7 @@
 package model.storage;
 
 import model.ticket.Ticket;
+
 import java.util.Arrays;
 
 public class TicketArrayList {
@@ -18,31 +19,22 @@ public class TicketArrayList {
         list[list.length - 1] = ticket;
     }
 
-    public Ticket getByIndex(int index) {
-        try {
-            return list[index];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Index is out of range while getting element!");
-            return null;
-        }
+    public Ticket getByIndex(int index) throws ArrayIndexOutOfBoundsException {
+        return list[index];
     }
 
-    public void delete(int index) {
-        try {
-            Ticket[] result = new Ticket[size - 1];
+    public void delete(int index) throws ArrayIndexOutOfBoundsException {
+        Ticket[] result = new Ticket[size - 1];
 
-            for (int i = 0; i < size; i++) {
-                if (i != index) {
-                    int newIndex = i < index ? i : i - 1;
-                    result[newIndex] = list[i];
-                }
+        for (int i = 0; i < size; i++) {
+            if (i != index) {
+                int newIndex = i < index ? i : i - 1;
+                result[newIndex] = list[i];
             }
-
-            list = result;
-            size--;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Index is out of range while deleting element!");
         }
+
+        list = result;
+        size--;
     }
 
     @Override
