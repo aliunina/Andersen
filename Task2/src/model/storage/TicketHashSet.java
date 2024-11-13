@@ -2,9 +2,12 @@ package model.storage;
 
 import model.ticket.Ticket;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
-public class TicketHashSet implements Iterable{
+public class TicketHashSet implements Iterable {
     static final Object DUMMY = new Object();
     private HashMap<Ticket, Object> map;
 
@@ -56,7 +59,7 @@ public class TicketHashSet implements Iterable{
     public String toString() {
         StringBuilder res = new StringBuilder();
         int i = 0;
-        for (Map.Entry<Ticket, Object> set: map.entrySet()) {
+        for (Map.Entry<Ticket, Object> set : map.entrySet()) {
             res.append(i + ") " + set.getKey() + "\n");
             i++;
         }

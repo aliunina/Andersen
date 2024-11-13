@@ -1,5 +1,6 @@
-import model.*;
-import model.storage.*;
+import model.Identifier;
+import model.storage.TicketArrayList;
+import model.storage.TicketHashSet;
 import model.ticket.StadiumSector;
 import model.ticket.Ticket;
 
@@ -12,7 +13,7 @@ public class TicketService extends Identifier {
         TicketArrayList list = new TicketArrayList();
 
         //filling storage
-        Ticket limitedTicket = new Ticket("0001", "MinskArena","123", new Timestamp(1733850000000L));
+        Ticket limitedTicket = new Ticket("0001", "MinskArena", "123", new Timestamp(1733850000000L));
         Ticket fullTicket = new Ticket("0002", "DinamoSt", "472", new Timestamp(1740756600000L),
                 true, StadiumSector.B, 10F, new BigDecimal(100F));
         limitedTicket.setPrice(new BigDecimal(380.5F));
@@ -21,7 +22,7 @@ public class TicketService extends Identifier {
         list.add(new Ticket("0003", "Bolshoi", "537", new Timestamp(1733550000000L)));
         list.add(new Ticket("0004", "Chizhouka", "428", new Timestamp(1735570000000L)));
         list.add(new Ticket("0005", "OperaTh", "034", new Timestamp(1795580000000L)));
-        list.add(new Ticket("0006", "MinskArena",  "525", new Timestamp(1795690000000L)));
+        list.add(new Ticket("0006", "MinskArena", "525", new Timestamp(1795690000000L)));
         list.add(new Ticket("0007", "Bolshoi", "765", new Timestamp(1796680000000L)));
         list.add(new Ticket("0008", "DinamoSt", "125", new Timestamp(1794470000000L)));
         list.add(new Ticket("0009", "MinskArena", "908", new Timestamp(1735590000000L)));
@@ -42,7 +43,7 @@ public class TicketService extends Identifier {
         Ticket t1 = new Ticket("0001", "Bolshoi", "537", new Timestamp(1733550000000L));
         Ticket t2 = new Ticket("0002", "Chizhouka", "428", new Timestamp(1735570000000L));
         Ticket t3 = new Ticket("0003", "OperaTh", "034", new Timestamp(1795580000000L));
-        Ticket t4 = new Ticket("0004", "DinamoSt",  "125", new Timestamp(1794470000000L));
+        Ticket t4 = new Ticket("0004", "DinamoSt", "125", new Timestamp(1794470000000L));
         Ticket t5 = new Ticket("0005", "Bolshoi", "765", new Timestamp(1796680000000L));
         Ticket t6 = new Ticket("0006", "MinskArena", "908", new Timestamp(1735590000000L));
         Ticket t7 = new Ticket("0006", "MinskArena", "908", new Timestamp(1735590000000L));
@@ -73,7 +74,7 @@ public class TicketService extends Identifier {
         set.delete(t4);
 
         Iterator<Ticket> iter = set.iterator();
-        while(iter.hasNext()){
+        while (iter.hasNext()) {
             System.out.println(iter.next());
         }
     }
