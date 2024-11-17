@@ -3,3 +3,5 @@
 *.iml
 /.idea
 /Task7/MavenTest/.idea
+/Task7/GradleTest/.idea
+/Task7/GradleTest/.gradle
