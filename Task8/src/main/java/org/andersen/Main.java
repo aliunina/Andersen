@@ -15,20 +15,21 @@ public class Main {
 
     public static void main(String[] args) {
         ConnectionFactory cf = new ConnectionFactory();
-        Connection connection = cf.connectToDatabase(USER, PASSWORD);
+        cf.connectToDatabase(USER, PASSWORD);
         try {
             UserDao userDao = new UserDao();
             TicketDao ticketDao = new TicketDao();
 
-//            userDao.insertUser("new user");
-//            ticketDao.insertTicket(4L, TicketType.WEEK);
+            userDao.insertUser("new user");
+            ticketDao.insertTicket(4, TicketType.WEEK);
 
-//            User user = userDao.selectUserById(4L);
-//            System.out.println("Selected user: " + user);
-//            Ticket ticket = ticketDao.selectTicketById(5L, 4L);
-//            System.out.println("Selected ticket: " + ticket);
+            User user = userDao.selectUserById(3);
+            System.out.println("Selected user: " + user);
+            Ticket ticket = ticketDao.selectTicketById(4, 4);
+            System.out.println("Selected ticket: " + ticket);
 
-            ticketDao.updateTicketType(3, TicketType.MONTH);
+            ticketDao.updateTicketType(4, TicketType.YEAR);
+            userDao.deleteUser(3);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
