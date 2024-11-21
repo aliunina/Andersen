@@ -23,10 +23,12 @@ public class Main {
 //            userDao.insertUser("new user");
 //            ticketDao.insertTicket(4L, TicketType.WEEK);
 
-            User user = userDao.selectUserById(4L);
-            System.out.println("Selected user: " + user);
-            Ticket ticket = ticketDao.selectTicketById(5L, 4L);
-            System.out.println("Selected ticket: " + ticket);
+//            User user = userDao.selectUserById(4L);
+//            System.out.println("Selected user: " + user);
+//            Ticket ticket = ticketDao.selectTicketById(5L, 4L);
+//            System.out.println("Selected ticket: " + ticket);
+
+            ticketDao.updateTicketType(3, TicketType.MONTH);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
