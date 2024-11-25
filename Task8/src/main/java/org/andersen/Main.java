@@ -3,11 +3,12 @@ package org.andersen;
 import org.andersen.connection.ConnectionFactory;
 import org.andersen.dao.TicketDao;
 import org.andersen.dao.UserDao;
+import org.andersen.dao.impl.TicketDaoImpl;
+import org.andersen.dao.impl.UserDaoImpl;
 import org.andersen.model.*;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.ParseException;
+import java.util.List;
 
 public class Main {
     private static final String USER = "postgres";
@@ -17,16 +18,20 @@ public class Main {
         ConnectionFactory cf = new ConnectionFactory();
         cf.connectToDatabase(USER, PASSWORD);
         try {
-            UserDao userDao = new UserDao();
-            TicketDao ticketDao = new TicketDao();
+            UserDao userDao = new UserDaoImpl();
+            TicketDao ticketDao = new TicketDaoImpl();
 
             userDao.insertUser("new user");
             ticketDao.insertTicket(4, TicketType.WEEK);
 
             User user = userDao.selectUserById(3);
             System.out.println("Selected user: " + user);
-            Ticket ticket = ticketDao.selectTicketById(4, 4);
+            Ticket ticket = ticketDao.selectTicketById(4);
             System.out.println("Selected ticket: " + ticket);
+
+
+            List<Ticket> tickets = ticketDao.selectTicketsByUserId(4);
+            System.out.println(tickets);
 
             ticketDao.updateTicketType(4, TicketType.YEAR);
             userDao.deleteUser(3);
