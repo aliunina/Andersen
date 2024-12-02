@@ -21,14 +21,13 @@ public class Main {
             UserDao userDao = new UserDaoImpl();
             TicketDao ticketDao = new TicketDaoImpl();
 
-            userDao.insertUser("new user");
-            ticketDao.insertTicket(4, TicketType.WEEK);
+            userDao.insertUser(new User(1, "Peter"));
+            ticketDao.insertTicket(new Ticket(1, 4, TicketType.WEEK));
 
-            User user = userDao.selectUserById(3);
+            User user = userDao.selectUserById(4);
             System.out.println("Selected user: " + user);
             Ticket ticket = ticketDao.selectTicketById(4);
             System.out.println("Selected ticket: " + ticket);
-
 
             List<Ticket> tickets = ticketDao.selectTicketsByUserId(4);
             System.out.println(tickets);

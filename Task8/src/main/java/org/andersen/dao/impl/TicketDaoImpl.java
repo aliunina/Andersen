@@ -12,16 +12,19 @@ import java.util.List;
 public class TicketDaoImpl implements TicketDao {
     Connection connection = ConnectionFactory.getConnection();
     private static final String SQL_INSERT_TICKET =
-            "INSERT INTO public.\"Ticket\"(id, user_id, ticket_type, creation_date) VALUES (DEFAULT, %d, '%s', '%s')";
+            "INSERT INTO public.\"Ticket\"(id, user_id, ticket_type, creation_date) VALUES (?, ?, ?, ?)";
     private static final String SQL_SELECT_TICKET_BY_ID = "SELECT * FROM public.\"Ticket\" WHERE id = '%s'";
     private static final String SQL_SELECT_TICKETS_BY_USER_ID = "SELECT * FROM public.\"Ticket\" WHERE user_id = '%s'";
     private static final String SQL_UPDATE_TICKET_TYPE = "UPDATE public.\"Ticket\" SET ticket_type='%s' WHERE id = %d";
 
     @Override
-    public void insertTicket(long userId, TicketType type) throws SQLException {
-        String query = String.format(SQL_INSERT_TICKET, userId, type, getCreationDate());
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(query);
+    public void insertTicket(Ticket ticket) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(SQL_INSERT_TICKET);
+        ps.setLong(1, ticket.getId());
+        ps.setLong(2, ticket.getUserId());
+        ps.setString(3, ticket.getType().name());
+        ps.setTimestamp(4, ticket.getCreationDate());
+        ps.executeUpdate();
         System.out.println("Ticket inserted.");
     }
 
@@ -33,7 +36,7 @@ public class TicketDaoImpl implements TicketDao {
         ResultSet res = statement.executeQuery(query);
         res.next();
         Ticket ticket = new Ticket(res.getLong("id"), res.getLong("user_id"),
-                TicketType.valueOf(res.getString("ticket_type")), res.getDate("creation_date"));
+                TicketType.valueOf(res.getString("ticket_type")), res.getTimestamp("creation_date"));
         return ticket;
     }
 
@@ -47,7 +50,7 @@ public class TicketDaoImpl implements TicketDao {
         while (res.next()) {
             tickets.add(new Ticket(res.getLong("id"), res.getLong("user_id"),
                     TicketType.valueOf(res.getString("ticket_type")),
-                    res.getDate("creation_date")));
+                    res.getTimestamp("creation_date")));
         }
         return tickets;
     }
@@ -58,9 +61,5 @@ public class TicketDaoImpl implements TicketDao {
         Statement statement = connection.createStatement();
         statement.executeUpdate(query);
         System.out.println("Ticket #" + id + " updated.");
-    }
-
-    private Date getCreationDate() {
-        return new Date(System.currentTimeMillis());
     }
 }
