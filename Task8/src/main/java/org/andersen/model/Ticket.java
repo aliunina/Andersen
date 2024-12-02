@@ -1,28 +1,11 @@
 package org.andersen.model;
-
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-
 import java.sql.Timestamp;
+import java.util.Date;
 
-@Entity
-@Table(name = "\"Ticket\"", schema = "public")
 public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(nullable = false)
     private long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
     private User user;
-
-    @Column(name = "ticket_type", nullable = false)
-    @Enumerated(EnumType.STRING)
     private TicketType ticketType;
-
-    @CreationTimestamp
-    @Column(name = "creation_date", nullable = false)
     private Timestamp creationDate;
 
     public Ticket() {
@@ -37,11 +20,39 @@ public class Ticket {
 
     public Ticket(long id, User user, TicketType ticketType) {
         this(user, ticketType);
+    private long userId;
+    private TicketType type;
+    private Timestamp creationDate;
+
+    public Ticket(long id, long userId, TicketType type) {
+        this.id = id;
+        this.userId = userId;
+        this.type = type;
+        this.creationDate = new Timestamp(System.currentTimeMillis());
+    }
+
+    public Ticket(long id, long userId, TicketType type, Timestamp creationDate) {
         this.id = id;
     }
 
     public void setTicketType(TicketType ticketType) {
         this.ticketType = ticketType;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public TicketType getType() {
+        return type;
+    }
+
+    public Timestamp getCreationDate() {
+        return creationDate;
     }
 
     @Override

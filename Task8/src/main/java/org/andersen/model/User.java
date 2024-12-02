@@ -1,27 +1,15 @@
 package org.andersen.model;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-
 import java.sql.Timestamp;
 import java.util.List;
 
-@Entity
-@Table(name = "\"User\"", schema = "public")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(nullable = false)
     private long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @CreationTimestamp
-    @Column(name = "creation_date", nullable = false)
     private Timestamp creationDate;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets;
 
     public User() {
@@ -34,7 +22,12 @@ public class User {
     }
 
     public User(long id, String name) {
-        this(name);
+        this.id = id;
+        this.name = name;
+        this.creationDate = new Timestamp(System.currentTimeMillis());
+    }
+
+    public User(long id, String name, Timestamp creationDate) {
         this.id = id;
     }
 
@@ -48,6 +41,18 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Timestamp getCreationDate() {
+        return creationDate;
     }
 
     @Override

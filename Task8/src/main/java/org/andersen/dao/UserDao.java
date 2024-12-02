@@ -1,14 +1,12 @@
 package org.andersen.dao;
 
 import org.andersen.model.User;
-import org.hibernate.HibernateException;
+import java.sql.SQLException;
 
 public interface UserDao {
-    User selectUserById(long id) throws HibernateException;
+    public void insertUser(User user) throws SQLException;
 
-    void insertUser(User user) throws HibernateException;
+    public User selectUserById(long id) throws SQLException;
 
-    void deleteUser(long id) throws HibernateException;
-
-    void updateUser(User user) throws HibernateException;
+    public void deleteUser(long id) throws SQLException;
 }
