@@ -20,8 +20,8 @@ public class Main {
             TicketDao ticketDao = ctx.getBean(TicketDao.class);
             DataSource dataSource = ctx.getBean(DataSource.class);
 
-//            userDao.insertUser("new user");
-//            ticketDao.insertTicket(4, TicketType.WEEK);
+            userDao.insertUser("new user");
+            ticketDao.insertTicket(4, TicketType.WEEK);
 
             User user = userDao.selectUserById(4);
             System.out.println("Selected user: " + user);
@@ -29,11 +29,11 @@ public class Main {
             System.out.println("Selected ticket: " + ticket);
 
 
-//            List<Ticket> tickets = ticketDao.selectTicketsByUserId(4);
-//            System.out.println(tickets);
-//
-//            ticketDao.updateTicketType(4, TicketType.YEAR);
-//            userDao.deleteUser(3);
+            List<Ticket> tickets = ticketDao.selectTicketsByUserId(4);
+            System.out.println(tickets);
+
+            ticketDao.updateTicketType(4, TicketType.YEAR);
+            userDao.deleteUser(3);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
