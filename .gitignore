@@ -1,5 +1,9 @@
 *.iml
 /Task2/out
-/Task8
-/Task7
+*.class
+*.iml
 /.idea
+/Task7/MavenTest/.idea
+/Task7/GradleTest/.idea
+/Task7/GradleTest/.gradle
+/Task8/.idea
