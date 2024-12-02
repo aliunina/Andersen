@@ -1,5 +1,6 @@
 package org.andersen.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Ticket {
@@ -7,13 +8,29 @@ public class Ticket {
     private long userId;
     private TicketType type;
 
-    private Date creationDate;
+    private Timestamp creationDate;
 
-    public Ticket(long id, long userId, TicketType type, Date creationDate) {
+    public Ticket(long id, long userId, TicketType type, Timestamp creationDate) {
         this.id = id;
         this.userId = userId;
         this.type = type;
         this.creationDate = creationDate;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public TicketType getType() {
+        return type;
+    }
+
+    public Timestamp getCreationDate() {
+        return creationDate;
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.sql.*;
 public class UserDaoImpl implements UserDao {
     private final DataSource dataSource;
     private static final String SQL_INSERT_USER =
-            "INSERT INTO public.\"User\"(id, name, creation_date) VALUES (DEFAULT, '%s', '%s')";
+            "INSERT INTO public.\"User\"(id, name, creation_date) VALUES (?, ?, ?)";
     private static final String SQL_SELECT_USER_BY_ID = "SELECT * FROM public.\"User\" WHERE id = %d";
     private static final String SQL_DELETE_USER_TICKETS = "DELETE FROM public.\"Ticket\" WHERE user_id = %d";
     private static final String SQL_DELETE_USER = "DELETE FROM public.\"User\" WHERE id = %d";
@@ -21,10 +21,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void insertUser(String name) throws SQLException {
-        String query = String.format(SQL_INSERT_USER, name, getCreationDate());
-        Statement statement = dataSource.getConnection().createStatement();
-        statement.executeUpdate(query);
+    public void insertUser(User user) throws SQLException {
+        PreparedStatement ps = dataSource.getConnection().prepareStatement(SQL_INSERT_USER);
+        ps.setLong(1, user.getId());
+        ps.setString(2, user.getName());
+        ps.setTimestamp(3, user.getCreationDate());
+        ps.executeUpdate();
         System.out.println("User inserted.");
     }
 
@@ -36,7 +38,7 @@ public class UserDaoImpl implements UserDao {
         ResultSet res = statement.executeQuery(query);
         res.next();
         User user = new User(res.getLong("id"), res.getString("name"),
-                res.getDate("creation_date"));
+                res.getTimestamp("creation_date"));
         return user;
     }
 

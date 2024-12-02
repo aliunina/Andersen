@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface TicketDao {
-    public void insertTicket(long userId, TicketType type) throws SQLException;
+    public void insertTicket(Ticket ticket) throws SQLException;
 
     public Ticket selectTicketById(long id) throws SQLException;
 

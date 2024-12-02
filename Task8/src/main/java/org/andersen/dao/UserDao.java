@@ -5,7 +5,7 @@ import org.andersen.model.User;
 import java.sql.SQLException;
 
 public interface UserDao {
-    public void insertUser(String name) throws SQLException;
+    public void insertUser(User user) throws SQLException;
 
     public User selectUserById(long id) throws SQLException;
 
