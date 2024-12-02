@@ -1,4 +1,4 @@
-package model.ticket;
+package services;
 
 import model.Identifier;
 import model.ticket.StadiumSector;

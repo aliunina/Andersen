@@ -1,3 +1,5 @@
-/Task2/out
-*.class
 *.iml
+/Task2/out
+/Task8
+/Task7
+/.idea

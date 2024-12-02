@@ -1,0 +1,104 @@
+[
+  {
+    "ticketClass": "CLA",
+    "ticketType": "DAY",
+    "startDate": "2024-01-01",
+    "price": 20
+  },
+  {
+    "ticketClass": "CLA",
+    "ticketType": "DAY",
+    "startDate": "2023-01-20",
+    "price": 10
+  },
+  {
+    "ticketClass": "CLA",
+    "ticketType": "MONTH",
+    "startDate": null,
+    "price": 1000
+  },
+  {
+    "ticketClass": "STD",
+    "ticketType": "DAY",
+    "startDate": "2024-08-01",
+    "price": 20
+  },
+  {
+    "ticketClass": "STD",
+    "ticketType": "WEEK",
+    "startDate": "2020-01-01",
+    "price": 50
+  },
+  {
+    "ticketClass": "CLA",
+    "ticketType": "YEAR",
+    "startDate": "2020-01-01",
+    "price": 500
+  },
+  {
+    "ticketClass": "CLA",
+    "ticketType": "MONTH",
+    "startDate": null,
+    "price": 100
+  },
+  {
+    "ticketClass": "CLA",
+    "ticketType": "DAY",
+    "startDate": "2020-01-01",
+    "price": 100
+  },
+  {
+    "ticketClass": "STD",
+    "ticketType": "MONTH",
+    "startDate": null,
+    "price": 100
+  },
+  {
+    "ticketClass": "STD",
+    "ticketType": "YEAR",
+    "startDate": "2020-01-01",
+    "price": 100
+  },
+  {
+    "ticketClass": "STD",
+    "ticketType": "MONTH",
+    "startDate": null,
+    "price": 1000
+  },
+  {
+    "ticketClass": "STD",
+    "ticketType": "YEAR",
+    "startDate": "2022-03-28",
+    "price": 100
+  },
+  {
+    "ticketClass": "CLA",
+    "ticketType": "MONTH",
+    "startDate": null,
+    "price": 150
+  },
+  {
+    "ticketClass": "STD",
+    "ticketType": "DAY",
+    "startDate": "2020-01-01",
+    "price": 24
+  },
+  {
+    "ticketClass": "CLA",
+    "ticketType": "YEAR",
+    "startDate": "2019-11-20",
+    "price": 100
+  },
+  {
+    "ticketClass": "STD",
+    "ticketType": "DAY",
+    "startDate": "2018-01-01",
+    "price": 100
+  },
+  {
+    "ticketClass": "CLA",
+    "ticketType": "DAY",
+    "startDate": "2024-08-12",
+    "price": 60
+  }
+]
