@@ -2,8 +2,8 @@ package org.andersen.dao;
 
 import org.andersen.model.Ticket;
 import org.andersen.model.TicketType;
+import org.hibernate.SQLException;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface TicketDao {

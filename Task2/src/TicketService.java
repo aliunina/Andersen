@@ -1,6 +1,6 @@
 import model.Identifier;
-import model.storage.TicketArrayList;
-import model.storage.TicketHashSet;
+import model.storage.CustomArrayList;
+import model.storage.CustomHashSet;
 import model.ticket.StadiumSector;
 import model.ticket.Ticket;
 
@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 public class TicketService extends Identifier {
     public static void main(String[] args) {
-        TicketArrayList list = new TicketArrayList();
+        CustomArrayList<Ticket> list = new CustomArrayList();
 
         //filling storage
         Ticket limitedTicket = new Ticket("0001", "MinskArena", "123", new Timestamp(1733850000000L));
@@ -29,7 +29,7 @@ public class TicketService extends Identifier {
         list.add(new Ticket("0010", "OperaTh", "473", new Timestamp(1793760000000L)));
 
         System.out.println(list);
-        
+
         list.delete(5);
         list.delete(2);
 
@@ -37,20 +37,7 @@ public class TicketService extends Identifier {
 
         System.out.println(list.getByIndex(2));
 
-        ///////////// Exceptions check /////////////
-        try {
-            list.delete(10);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Index is out of range while deleting element!");
-        }
-
-        try {
-            System.out.println(list.getByIndex(13));
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Index is out of range while getting element by index!");
-        }
-
-        TicketHashSet set = new TicketHashSet();
+        CustomHashSet set = new CustomHashSet();
         Ticket t1 = new Ticket("0001", "Bolshoi", "537", new Timestamp(1733550000000L));
         Ticket t2 = new Ticket("0002", "Chizhouka", "428", new Timestamp(1735570000000L));
         Ticket t3 = new Ticket("0003", "OperaTh", "034", new Timestamp(1795580000000L));
@@ -63,14 +50,14 @@ public class TicketService extends Identifier {
         set.add(t2);
         set.add(t3);
         set.add(t2);
+        set.add(t4);
         set.add(t3);
-        set.add(t1);
-        set.add(t6);
-        set.add(t4);
-        set.add(t5);
-        set.add(t4);
         set.add(t5);
         set.add(t2);
+        set.add(t4);
+        set.add(t1);
+        set.add(t6);
+        set.add(t5);
         set.add(t6);
 
         System.out.println(set);
@@ -82,7 +69,6 @@ public class TicketService extends Identifier {
 
         set.delete(t3);
         set.delete(t5);
-        set.delete(t4);
 
         Iterator<Ticket> iter = set.iterator();
         while (iter.hasNext()) {
