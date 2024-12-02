@@ -1,7 +1,6 @@
 package org.andersen.dao;
 
 import org.andersen.model.User;
-
 import java.sql.SQLException;
 
 public interface UserDao {
