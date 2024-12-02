@@ -45,7 +45,7 @@ public class CustomHashSet<T> implements Iterable {
 
     public boolean contains(T element) {
         for (HashValue hashVal : list) {
-            if (hashVal.hashCode == element.hashCode()) {
+            if (hashVal.hashCode == element.hashCode() && hashVal.value.equals(element)) {
                 return true;
             }
         }
