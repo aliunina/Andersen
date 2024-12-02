@@ -12,27 +12,27 @@ public class Main {
         try {
             UserDaoImpl userDao = new UserDaoImpl();
             TicketDaoImpl ticketDao = new TicketDaoImpl();
-            User user = userDao.selectUserById(4);
-            System.out.println(user);
+//            User user = userDao.selectUserById(4);
+//            System.out.println(user);
+//
+//            user.setName("USER");
+//            user.getTickets().get(0).setTicketType(TicketType.MONTH);
+//
+//            userDao.updateUser(user);
 
-            user.setName("USER");
-            user.getTickets().get(0).setTicketType(TicketType.MONTH);
-
-            userDao.updateUser(user);
-
-            User newUser = new User("NEW2");
+            User newUser = new User("Helen");
             userDao.insertUser(newUser);
 
-            System.out.println(ticketDao.selectTicketById(5));
-
-            ticketDao.updateTicketType(4, TicketType.YEAR);
-
-            ticketDao.insertTicket(new Ticket(user, TicketType.MONTH));
-            ticketDao.insertTicket(new Ticket(user, TicketType.YEAR));
-
-            System.out.println(ticketDao.selectTicketsByUserId(3));
-
-            userDao.deleteUser(3);
+//            System.out.println(ticketDao.selectTicketById(5));
+//
+//            ticketDao.updateTicketType(4, TicketType.YEAR);
+//
+//            ticketDao.insertTicket(new Ticket(user, TicketType.MONTH));
+//            ticketDao.insertTicket(new Ticket(user, TicketType.YEAR));
+//
+//            System.out.println(ticketDao.selectTicketsByUserId(3));
+//
+//            userDao.deleteUser(3);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -1,8 +1,9 @@
 package org.andersen.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "\"Ticket\"", schema = "public")
@@ -20,11 +21,12 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private TicketType ticketType;
 
+    @CreationTimestamp
     @Column(name = "creation_date", nullable = false)
-    private Date creationDate;
+    private Timestamp creationDate;
 
     public Ticket() {
-        this.creationDate = new java.sql.Date(System.currentTimeMillis());
+        this.creationDate = new Timestamp(System.currentTimeMillis());
     }
 
     public Ticket(User user, TicketType ticketType) {

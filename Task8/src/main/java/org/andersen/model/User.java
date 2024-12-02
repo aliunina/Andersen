@@ -1,8 +1,9 @@
 package org.andersen.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -16,14 +17,15 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    @CreationTimestamp
     @Column(name = "creation_date", nullable = false)
-    private Date creationDate;
+    private Timestamp creationDate;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets;
 
     public User() {
-        this.creationDate = new java.sql.Date(System.currentTimeMillis());
+        this.creationDate = new Timestamp(System.currentTimeMillis());
     }
 
     public User(String name) {
