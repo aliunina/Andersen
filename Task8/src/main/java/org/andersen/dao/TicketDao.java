@@ -1,7 +1,7 @@
 package org.andersen.dao;
 
-import org.andersen.model.Ticket;
-import org.andersen.model.TicketType;
+import org.andersen.model.ticket.Ticket;
+import org.andersen.model.ticket.TicketType;
 
 import java.sql.SQLException;
 import java.util.List;
