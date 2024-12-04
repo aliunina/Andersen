@@ -1,19 +1,32 @@
-package org.andersen.model;
+package org.andersen.model.ticket;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Ticket {
-    private long id;
-    private long userId;
-    private TicketType type;
+    protected long id;
+    protected long userId;
+    protected TicketType type;
+    protected Timestamp creationDate;
 
-    private Timestamp creationDate;
+    public Ticket() {
+        this.creationDate = new Timestamp(System.currentTimeMillis());
+    }
 
-    public Ticket(long id, long userId, TicketType type, Timestamp creationDate) {
+    public Ticket(long userId, TicketType type) {
+        this();
+        this.userId = userId;
+        this.type = type;
+    }
+
+    public Ticket(long id, long userId, TicketType type) {
+        this();
         this.id = id;
         this.userId = userId;
         this.type = type;
+    }
+
+    public Ticket(long id, long userId, TicketType type, Timestamp creationDate) {
+        this(id, userId, type);
         this.creationDate = creationDate;
     }
 
