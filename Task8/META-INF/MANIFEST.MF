@@ -1,1 +1,1 @@
-Main-Class: org.andersen.Main
+Main-Class: org.andersen.App

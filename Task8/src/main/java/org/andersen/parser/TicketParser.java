@@ -1,6 +1,6 @@
 package org.andersen.parser;
 
-import org.andersen.model.ticket.BusTicket;
+import org.andersen.model.ticket.Ticket;
 import org.andersen.model.ticket.TicketType;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,8 +23,8 @@ public class TicketParser {
     @Value("${app.tickets.json.filename}")
     private String fileName;
 
-    public List<BusTicket>  parseTickets() throws IOException {
-        List<BusTicket> result = new ArrayList<>();
+    public List<Ticket>  parseTickets() throws IOException {
+        List<Ticket> result = new ArrayList<>();
         Resource resource = new ClassPathResource(fileName);
         BufferedReader reader = new BufferedReader(new FileReader(resource.getFile()));
         StringBuilder jsonStr = new StringBuilder();
@@ -46,7 +46,7 @@ public class TicketParser {
             }
 
             result.add(
-                    new BusTicket(ticket.getString("ticketClass"),
+                    new Ticket(ticket.getString("ticketClass"),
                             TicketType.valueOf(ticket.getString("ticketType")),
                             startDate,
                             new BigDecimal(ticket.getFloat("price"))));
