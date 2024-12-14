@@ -1,6 +1,7 @@
 package org.andersen.util;
 
 import org.postgresql.ds.PGSimpleDataSource;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -21,7 +22,7 @@ public class ApplicationContextConfigurationUtil {
     }
 
     @Bean
-    @Scope("singleton")
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public DataSource dataSource() {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setURL(env.getProperty("db.url"));
@@ -31,6 +32,7 @@ public class ApplicationContextConfigurationUtil {
     }
 
     @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public PlatformTransactionManager transactionManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }

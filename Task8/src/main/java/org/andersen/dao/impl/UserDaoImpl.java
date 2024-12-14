@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
         System.out.println("User inserted.");
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public User selectUserById(long id) throws SQLException {
         String query = String.format(SQL_SELECT_USER_BY_ID, id);

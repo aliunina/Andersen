@@ -1,5 +1,6 @@
 package org.andersen;
 
+import org.andersen.parser.TicketParser;
 import org.andersen.service.TicketService;
 import org.andersen.service.UserService;
 import org.andersen.util.ApplicationContextConfigurationUtil;
@@ -12,15 +13,14 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationContextConfigurationUtil.class);
-        String fileName = "tickets.json";
 
         try {
             UserService userService = ctx.getBean(UserService.class);
-            TicketService ticketService = ctx.getBean(TicketService.class);
+            TicketParser ticketParser = ctx.getBean(TicketParser.class);
 
             userService.activateUser(1);
 
-            System.out.println(ticketService.getTicketsFromFile(fileName));
+            System.out.println(ticketParser.parseTickets());
         } catch (SQLException | IllegalAccessException | IOException e) {
             System.out.println(e.getMessage());
         }

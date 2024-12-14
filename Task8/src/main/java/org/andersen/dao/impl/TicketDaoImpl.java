@@ -36,7 +36,7 @@ public class TicketDaoImpl implements TicketDao {
         System.out.println("Ticket inserted.");
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public Ticket selectTicketById(long id) throws SQLException {
         String query = String.format(SQL_SELECT_TICKET_BY_ID, id);
@@ -50,7 +50,7 @@ public class TicketDaoImpl implements TicketDao {
         return ticket;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<Ticket> selectTicketsByUserId(long userId) throws SQLException {
         String query = String.format(SQL_SELECT_TICKETS_BY_USER_ID, userId);
