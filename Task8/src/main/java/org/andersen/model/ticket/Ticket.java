@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="ticket")
+@Table(name="tickets")
 @Getter
 @Setter
 public class Ticket {

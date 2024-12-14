@@ -25,6 +25,11 @@ public class AppController {
         return userService.getUserById(id);
     }
 
+    @GetMapping("/user/with_tickets/{id}")
+    public User getUserWithTickets(@PathVariable ("id") Long id){
+        return userService.getUserWithTicketsById(id);
+    }
+
     @PostMapping("/user/new")
     public User createUser(@RequestBody User userDetails) {
         return userService.addUser(userDetails);

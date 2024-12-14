@@ -1,7 +1,6 @@
 package org.andersen.repository;
 
 import org.andersen.model.user.User;
-import org.andersen.model.user.UserStatus;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
