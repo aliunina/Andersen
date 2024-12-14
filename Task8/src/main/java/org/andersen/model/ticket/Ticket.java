@@ -56,6 +56,12 @@ public class Ticket {
         this.type = type;
         this.startDate = startDate;
         this.price = price;
+        this.creationDate = new Timestamp(System.currentTimeMillis());
     }
 
+    public Ticket(String ticketClass, TicketType type, LocalDate startDate, BigDecimal price, User user) {
+        this(ticketClass, type, startDate, price);
+        this.user = user;
+        this.creationDate = new Timestamp(System.currentTimeMillis());
+    }
 }
