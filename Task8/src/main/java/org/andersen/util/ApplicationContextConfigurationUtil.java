@@ -1,23 +1,39 @@
 package org.andersen.util;
 
 import org.postgresql.ds.PGSimpleDataSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "org.andersen")
+@EnableTransactionManagement
+@PropertySource("classpath:application.properties")
 public class ApplicationContextConfigurationUtil {
+    private final Environment env;
+
+    public ApplicationContextConfigurationUtil(Environment env) {
+        this.env = env;
+    }
+
     @Bean
-    @Scope("singleton")
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public DataSource dataSource() {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setUser("postgres");
-        dataSource.setPassword("pass123");
-        dataSource.setURL("jdbc:postgresql://localhost:5432/my_ticket_service_db");
+        dataSource.setURL(env.getProperty("db.url"));
+        dataSource.setUser(env.getProperty("db.username"));
+        dataSource.setPassword(env.getProperty("db.password"));
         return dataSource;
+    }
+
+    @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public PlatformTransactionManager transactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
     }
 }

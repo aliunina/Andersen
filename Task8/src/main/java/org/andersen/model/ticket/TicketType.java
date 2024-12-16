@@ -1,4 +1,4 @@
-package org.andersen.model;
+package org.andersen.model.ticket;
 
 public enum TicketType {
     DAY,
