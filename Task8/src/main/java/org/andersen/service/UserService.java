@@ -1,32 +1,43 @@
 package org.andersen.service;
 
-import org.andersen.dao.UserDao;
+import lombok.RequiredArgsConstructor;
+import org.andersen.exception.UserActivationIsDisabledException;
+import org.andersen.exception.UserNotFoundException;
 import org.andersen.model.user.User;
+import org.andersen.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.sql.SQLException;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    private final UserDao userDao;
+    private final UserRepository userRepository;
 
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
+    @Value("${app.conditionalBean.available}")
+    private boolean isActivationEnabled;
+
+    @Transactional
+    public User addUser(User user){
+        return userRepository.save(user);
     }
 
-    public void addUser(User user) throws SQLException {
-        userDao.insertUser(user);
+    @Transactional(readOnly = true)
+    public User getUserById(Long id){
+        return userRepository.findById(id).orElseThrow(()->new UserNotFoundException());
     }
 
-    public User getUserById(long id) throws SQLException {
-        return userDao.selectUserById(id);
+    @Transactional
+    public void deleteUser(Long id){
+        User user = userRepository.findById(id).orElseThrow(()->new UserNotFoundException());
+        userRepository.delete(user);
     }
 
-    public void deleteUser(long id) throws SQLException {
-        userDao.deleteUser(id);
-    }
-
-    public void activateUser(long id) throws IllegalAccessException, SQLException {
-        userDao.activateUser(id);
+    public void activateUser(long id) throws UserActivationIsDisabledException {
+        if (isActivationEnabled) {
+            userRepository.updateUserStatus(id);
+        } else {
+            throw new UserActivationIsDisabledException();
+        }
     }
 }
