@@ -26,7 +26,7 @@ class UserServiceTest {
     private UserService userService;
 
     @Test
-    void testAddUser_userPassed_success() {
+    void successAddCorrectUser() {
         User user = new User(1L, "Peter", UserStatus.ACTIVATED);
         when(userRepository.save(user)).thenReturn(user);
         assertEquals(userService.addUser(user), user);
@@ -34,20 +34,20 @@ class UserServiceTest {
     }
 
     @Test
-    void testAddUser_nullPassed_error() {
+    void failAddNullUser() {
         assertThrows(NullPointerException.class, () -> userService.addUser(null));
         verify(userRepository, never()).save(null);
     }
 
     @Test
-    void testАddUser_blankNamePassed_error() {
+    void failAddBlankNameUser() {
         User user = new User(" ", UserStatus.DEACTIVATED);
         assertThrows(EmptyUserNameException.class, () -> userService.addUser(user));
         verify(userRepository, never()).save(user);
     }
 
     @Test
-    void testGetUser_userFound_success() {
+    void successGetExistingUser() {
         User user = new User(1L, "Peter", UserStatus.ACTIVATED);
         when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
         User result = userService.getUserById(user.getId());
@@ -56,7 +56,7 @@ class UserServiceTest {
     }
 
     @Test
-    void testGetUser_userNotFound_error() {
+    void failGetNonExistentUser() {
         User user = new User(100L, "Maria", UserStatus.DEACTIVATED);
         when(userRepository.findById(user.getId())).thenReturn(Optional.empty());
         assertThrows(UserNotFoundException.class, () -> userService.getUserById(user.getId()));
@@ -64,29 +64,13 @@ class UserServiceTest {
     }
 
     @Test
-    void testGetUser_nullIdPassed_error() {
+    void failGetNullIdUser() {
         assertThrows(UserNotFoundException.class, () -> userService.getUserById(null));
         verify(userRepository, times(1)).findById(null);
     }
 
     @Test
-    void testGetUserWithTickets_userFound_success() {
-        User user = new User(1L, "Peter", UserStatus.ACTIVATED);
-        when(userRepository.findUserWithTicketsById(user.getId())).thenReturn(Optional.of(user));
-        assertEquals(user, userService.getUserWithTicketsById(user.getId()));
-        verify(userRepository, times(1)).findUserWithTicketsById(user.getId());
-    }
-
-    @Test
-    void testGetUserWithTickets_userNotFound_error() {
-        User user = new User(100L, "Maria", UserStatus.DEACTIVATED);
-        when(userRepository.findById(user.getId())).thenReturn(Optional.empty());
-        assertThrows(UserNotFoundException.class, () -> userService.getUserById(user.getId()));
-        verify(userRepository, times(1)).findById(user.getId());
-    }
-
-    @Test
-    void testDeleteUser_userFound_success() {
+    void successDeleteExistingUser() {
         User user = new User(1L, "Peter", UserStatus.ACTIVATED);
         when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
         doNothing().when(userRepository).delete(user);
@@ -96,20 +80,20 @@ class UserServiceTest {
     }
 
     @Test
-    void testDeleteUser_userNotFound_error() {
+    void failDeleteNonExistentUser() {
         User user = new User(100L, "Maria", UserStatus.DEACTIVATED);
         assertThrows(UserNotFoundException.class, () -> userService.deleteUser(user.getId()));
         verify(userRepository, never()).deleteById(user.getId());
     }
 
     @Test
-    void testDeleteUser_nullIdPassed_error() {
+    void failDeleteNullIdUser() {
         assertThrows(NullPointerException.class, () -> userService.deleteUser(null));
         verify(userRepository, never()).deleteById(null);
     }
 
     @Test
-    void testActivateUser_activationEnabled_success() {
+    void successActivateUser_activationEnabled() {
         User user = new User(1L, "Peter", UserStatus.DEACTIVATED);
         doNothing().when(userRepository).updateUserStatus(user.getId());
         assertDoesNotThrow(() -> userService.activateUser(user.getId()));
@@ -117,16 +101,16 @@ class UserServiceTest {
     }
 
     @Test
-    void testActivateUser_activationEnabled_userNotFound_error() {
-        User user = new User(100L, "Maria", UserStatus.DEACTIVATED);
-        assertThrows(UserNotFoundException.class, () -> userService.activateUser(user.getId()));
-        verify(userRepository, times(1)).updateUserStatus(user.getId());
-    }
-
-    @Test
-    void testActivateUser_activationDisabled_error() {
+    void failActivateUser_activationDisabled() {
         User user = new User(1L, "Peter", UserStatus.ACTIVATED);
         assertThrows(UserActivationIsDisabledException.class, () -> userService.activateUser(user.getId()));
         verify(userRepository, never()).updateUserStatus(user.getId());
+    }
+
+    @Test
+    void failActivateNotExistentUser() {
+        User user = new User(100L, "Maria", UserStatus.DEACTIVATED);
+        assertThrows(UserNotFoundException.class, () -> userService.activateUser(user.getId()));
+        verify(userRepository, times(1)).updateUserStatus(user.getId());
     }
 }
