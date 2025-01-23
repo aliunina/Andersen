@@ -35,4 +35,15 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+
+    public User(String name, UserStatus status) {
+        this.name = name;
+        this.status = status;
+        this.creationDate = new Timestamp(System.currentTimeMillis());
+    }
+
+    public User(long id, String name, UserStatus status) {
+        this(name, status);
+        this.id = id;
+    }
 }
