@@ -30,9 +30,9 @@ public class TicketController {
         return ticketService.getTicketsByUserId(userId);
     }
 
-    @PostMapping("/new")
+    @PostMapping("/")
     @ApiOperation(value = "Create ticket")
-    @ApiResponse(code = 201, message = "Created")
+    @ApiResponse(code = 200, message = "OK")
     public Ticket createTicket(@RequestBody Ticket ticket) {
         return ticketService.addTicket(ticket);
     }
