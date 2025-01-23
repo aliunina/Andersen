@@ -1,32 +1,49 @@
 package org.andersen.service;
 
-import org.andersen.dao.TicketDao;
+import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.andersen.exception.TicketNotFoundException;
+import org.andersen.exception.UserNotFoundException;
 import org.andersen.model.ticket.*;
+import org.andersen.model.user.User;
+import org.andersen.repository.TicketRepository;
+import org.andersen.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TicketService {
-    private final TicketDao ticketDao;
+    private final UserRepository userRepository;
+    private final TicketRepository ticketRepository;
 
-    public TicketService(TicketDao ticketDao) {
-        this.ticketDao = ticketDao;
+    @Transactional
+    public Ticket addTicket(Ticket ticket) {
+        User user = userRepository.findById(ticket.getUser().getId()).orElseThrow(()->new UserNotFoundException());
+        ticket.setUser(user);
+        return ticketRepository.save(ticket);
     }
 
-    public void addTicket(Ticket ticket) throws SQLException {
-        ticketDao.insertTicket(ticket);
+    @Transactional(readOnly = true)
+    public Ticket getTicketById(Long id) {
+        return ticketRepository.findById(id).orElseThrow(()->new TicketNotFoundException());
     }
 
-    public Ticket getTicketById(long id) throws SQLException {
-        return ticketDao.selectTicketById(id);
+    @Transactional(readOnly = true)
+    public List<Ticket> getTicketsByUserId(Long userId) {
+        return ticketRepository.findTicketsByUserId(userId);
     }
 
-    public List<Ticket> getTicketsByUserId(long userId) throws SQLException {
-        return ticketDao.selectTicketsByUserId(userId);
+    @Transactional
+    public Ticket updateTicketType(Long id, TicketType type) {
+        Ticket ticket = ticketRepository.findById(id).orElseThrow(()->new TicketNotFoundException());
+        ticket.setType(type);
+        return ticketRepository.save(ticket);
     }
 
-    public void updateTicketType(long id, TicketType type) throws SQLException {
-        ticketDao.updateTicketType(id, type);
+    @Transactional
+    public void deleteTicket(Long id){
+        Ticket ticket = ticketRepository.findById(id).orElseThrow(()->new TicketNotFoundException());
+        ticketRepository.delete(ticket);
     }
 }

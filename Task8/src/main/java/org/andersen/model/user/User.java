@@ -1,51 +1,38 @@
 package org.andersen.model.user;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.andersen.model.ticket.Ticket;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name="users")
+@Getter
+@Setter
 public class User {
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+
+    @NotNull
+    @Column(name = "name")
     private String name;
+
+    @Column(name="creation_date", updatable = false)
+    @CreationTimestamp
     private Timestamp creationDate;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ticket> tickets;
+
+    @Enumerated(EnumType.STRING)
     private UserStatus status;
-
-    public User(long id, String name, Timestamp creationDate, UserStatus status) {
-        this.id = id;
-        this.name = name;
-        this.creationDate = creationDate;
-        this.status = status;
-    }
-
-    public User(long id, String name, Timestamp creationDate, UserStatus status, List<Ticket> tickets) {
-        this(id, name, creationDate, status);
-        this.tickets = tickets;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Timestamp getCreationDate() {
-        return creationDate;
-    }
-
-    public UserStatus getStatus() {
-        return status;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", creationDate=" + creationDate +
-                '}';
-    }
 }
